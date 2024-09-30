@@ -1,0 +1,8 @@
+[user]
+	signingkey = C367AB19
+	email = 72092369+c0nn0rstevens@users.noreply.github.com
+	name = c0nn0rstevens
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
