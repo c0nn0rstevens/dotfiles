@@ -14,6 +14,10 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    {
+      -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+      'nvim-telescope/telescope-ui-select.nvim',
+    },
   },
   opts = {
     defaults = {
@@ -28,5 +32,13 @@ return {
         }
       },
     }
+  },
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- your ui-select settings here
+      }
+    }
   }
 }
+

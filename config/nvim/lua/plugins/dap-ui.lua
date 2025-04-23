@@ -92,6 +92,15 @@ return {
     local dap = require('dap')
     require('dapui').setup(opts)
 
+    -- Customize breakpoint signs
+    vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
+    vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#204028", bold = true })
+    vim.fn.sign_define('DapStopped', { text='', texthl='DapStoppedHl', linehl='DapStoppedLineHl', numhl= '' })
+    vim.fn.sign_define('DapBreakpoint', { text='', texthl='DiagnosticSignError', linehl='', numhl='' })
+    vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='DiagnosticSignWarn', linehl='', numhl='' })
+    vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DiagnosticSignError', linehl='', numhl= '' })
+    vim.fn.sign_define('DapLogPoint', { text='', texthl='DiagnosticSignInfo', linehl='', numhl= '' })
+
     dap.listeners.after.event_initialized["dapui_config"] = function()
       require('dapui').open()
     end
@@ -108,10 +117,48 @@ return {
 
     -- Add dap configurations based on your language/adapter settings
     -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-    -- dap.configurations.xxxxxxxxxx = {
-    --   {
-    --   },
-    -- }
+    dap.configurations.java = {
+      {
+        name = "Debug Launch (2GB)";
+        type = 'java';
+        request = 'launch';
+        vmArgs = "" ..
+          "-Xmx2g "
+      },
+      {
+        name = "Debug Attach (8000)";
+        type = 'java';
+        request = 'attach';
+        hostName = "127.0.0.1";
+        port = 8000;
+      },
+      {
+        name = "Debug Attach (5005)";
+        type = 'java';
+        request = 'attach';
+        hostName = "127.0.0.1";
+        port = 5005;
+      },
+      {
+        name = "My Custom Java Run Configuration",
+        type = "java",
+        request = "launch",
+        -- You need to extend the classPath to list your dependencies.
+        -- `nvim-jdtls` would automatically add the `classPaths` property if it is missing
+        -- classPaths = {},
+
+        -- If using multi-module projects, remove otherwise.
+        -- projectName = "yourProjectName",
+
+        javaExec = "java",
+        mainClass = "replace.with.your.fully.qualified.MainClass",
+
+        -- If using the JDK9+ module system, this needs to be extended
+        -- `nvim-jdtls` would automatically populate this property
+        -- modulePaths = {},
+        vmArgs = "" ..
+          "-Xmx2g "
+      },
+    }
   end
 }
-

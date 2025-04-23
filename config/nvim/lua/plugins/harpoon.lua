@@ -1,8 +1,7 @@
--- List of favorite files/marks per project
 return {
   -- https://github.com/ThePrimeagen/harpoon
   'ThePrimeagen/harpoon',
-  branch = 'master',
+  branch = 'harpoon2',
   event = 'VeryLazy',
   dependencies = {
     -- https://github.com/nvim-lua/plenary.nvim
