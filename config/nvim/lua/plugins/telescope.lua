@@ -2,6 +2,7 @@
 return {
   -- https://github.com/nvim-telescope/telescope.nvim
   'nvim-telescope/telescope.nvim',
+  tag = '0.1.8',
   lazy = true,
   dependencies = {
     -- https://github.com/nvim-lua/plenary.nvim
@@ -33,12 +34,5 @@ return {
       },
     }
   },
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- your ui-select settings here
-      }
-    }
-  }
 }
 
