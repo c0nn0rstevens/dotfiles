@@ -20,18 +20,18 @@ end
 
   -- Needed for debugging
   local bundles = {
-    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.53.1.jar"),
+    vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin-0.53.1.jar"),
  }
 
 -- Needed for running/debugging unit tests
-vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/package/java-test.nix/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/packages/java-test/extension/server/*.jar", 1), "\n"))
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
-    "/opt/homebrew/Cellar/openjdk/23.0.2",
+    "/Users/connor.stevens/.sdkman/candidates/java/23.0.2-tem/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -45,9 +45,9 @@ local config = {
 
     -- Eclipse jdtls location
     "-jar",
-    home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.1000.v20250131-0606.jar",
+    home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar",
     "-configuration",
-    home .. "/.local/share/nvim/mason/packages/jdtls/config_mac",
+    home .. "/.local/share/nvim/mason/packages/jdtls/config_mac/",
     "-data",
     workspace_dir,
   },
@@ -61,7 +61,7 @@ local config = {
   settings = {
     java = {
       -- TODO Replace this with the absolute path to your main java version (JDTLS requires JDK 21 or higher)
-      home = "/Library/Java/JavaVirtualMachines/openjdk.jdk",
+      home = "/Users/connor.stevens/.sdkman/candidates/java/23.0.2-tem",
       eclipse = {
         downloadSources = true,
       },
@@ -72,12 +72,12 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-23",
-            path = "/opt/homebrew/Cellar/openjdk/23.0.2",
+            path = "/users/connor.stevens/.sdkman/candidates/java/23.0.2-tem/",
           },
-  --         {
-  --           name = "JavaSE-11",
-  --           path = "/opt/homebrew/Cellar/openjdk@11/11.0.26",
-  --         },
+           {
+             name = "JavaSE-17",
+             path = "/users/connor.stevens/.sdkman/candidates/java/17.0.15-tem/",
+           },
         },
       },
       maven = {
